@@ -16,10 +16,21 @@ const EmployeeRegisterForm = () => {
   const [qualifications, setQualifications] = useState("");
 
   const handleFullNameChange = (e) => {
+<<<<<<< HEAD
     setFullName(e.target.value);
+=======
+    const filteredName = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+    setFullName(filteredName);
+>>>>>>> 1a17f589f8fa4bbf1c35bd2a2ce9217316cfbc29
   };
 
   const handleNicChange = (e) => {
+    const nicRegex = /^(\d{12}|(\d{11}v?))$/i;
+    if (!nicRegex.test(e.target.value)) {
+      setNicError("Please enter a valid NIC");
+    } else {
+      setNicError("");
+    }
     setNic(e.target.value);
   };
 
@@ -27,8 +38,19 @@ const EmployeeRegisterForm = () => {
     setGender(e.target.value);
   };
 
+<<<<<<< HEAD
   const handleDobChange = (e) => {
     setDob(e.target.value);
+=======
+  const handleDobChange = (value) => {
+    const today = new Date();
+    if (value > today) {
+      setDobError("Date of birth cannot be a future date");
+    } else {
+      setDobError("");
+    }
+    setDob(value);
+>>>>>>> 1a17f589f8fa4bbf1c35bd2a2ce9217316cfbc29
   };
 
   const handleContactNoChange = (e) => {
@@ -69,6 +91,7 @@ const EmployeeRegisterForm = () => {
       return;
     }
 
+<<<<<<< HEAD
     if (!emailRegex.test(email)) {
       Swal.fire({
         title: "Invalid email",
@@ -87,6 +110,8 @@ const EmployeeRegisterForm = () => {
       return;
     }
 
+=======
+>>>>>>> 1a17f589f8fa4bbf1c35bd2a2ce9217316cfbc29
     try {
       const employeeData = {
         employeeId: "EMP000",
@@ -157,6 +182,7 @@ const EmployeeRegisterForm = () => {
           onChange={handleGenderChange}
         />
       </div>
+<<<<<<< HEAD
       <div className={inputContainerStyle}>
         <input
           className={inputStyle}
@@ -164,6 +190,55 @@ const EmployeeRegisterForm = () => {
           value={dob}
           onChange={handleDobChange}
         />
+=======
+      <div className="flex flex-col gap-y-1">
+        <div
+          className={
+            inputContainerStyle +
+            " relative select-none " +
+            (dobError && "outline outline-4 outline-red-800 outline-offset-1")
+          }
+        >
+          <p
+            onClick={() => setIsDobSelected(!isDobSelected)}
+            className={
+              "flex items-center w-full bg-transparent h-14 rounded-xl text-black text-lg pl-5 " +
+              (dob ? "font-normal" : "font-semibold ")
+            }
+          >
+            {dob === null
+              ? "Date of Birth *"
+              : `${dob.getFullYear()} - ${
+                  dob.getMonth() < 10
+                    ? "0" + dob.getMonth().toString()
+                    : dob.getMonth()
+                } - ${
+                  dob.getDate() < 10
+                    ? "0" + dob.getDate().toString()
+                    : dob.getDate()
+                }`}
+          </p>
+
+          <div
+            className={
+              "absolute z-10 top-16 right-0 transition-opacity duration-150 ease-in-out  " +
+              (isDobSelected ? "opacity-100" : "opacity-0")
+            }
+          >
+            <Calendar
+              onChange={handleDobChange}
+              value={dob}
+              minDate={null} // Allow selection of past dates
+              maxDate={new Date(
+                new Date().setDate(new Date().getDate() - 1)
+              )} // Restrict selection to yesterday
+            />
+          </div>
+        </div>
+        {dobError && (
+          <p className="text-red-800 font-bold text-lg">{dobError}</p>
+        )}
+>>>>>>> 1a17f589f8fa4bbf1c35bd2a2ce9217316cfbc29
       </div>
       <div className={inputContainerStyle}>
         <input
@@ -189,6 +264,7 @@ const EmployeeRegisterForm = () => {
           onChange={handleAddressChange}
         />
       </div>
+<<<<<<< HEAD
       <div className={inputContainerStyle}>
         <input
           className={inputStyle}
@@ -196,16 +272,41 @@ const EmployeeRegisterForm = () => {
           value={qualifications}
           onChange={handleQualificationsChange}
         />
+=======
+      <div className="flex flex-col gap-y-1">
+        <div className={inputContainerStyle}>
+          <select
+            className={
+              "w-full bg-transparent h-14 rounded-xl text-black font-semibold text-lg pl-4 " +
+              (roleError &&
+                "outline outline-4 outline-red-800 outline-offset-1")
+            }
+            value={role}
+            onChange={handleRoleChange}
+          >
+            <option value="" disabled>
+              Select Role *
+            </option>
+            <option value="coach">Coach</option>
+            <option value="cleaner">Cleaner</option>
+            <option value="admin">Admin</option>
+            <option value="manager">Manager</option>
+          </select>
+        </div>
+        {roleError && (
+          <p className="text-red-800 font-bold text-lg">{roleError}</p>
+        )}
+>>>>>>> 1a17f589f8fa4bbf1c35bd2a2ce9217316cfbc29
       </div>
       <div className="flex justify-between mt-5">
         <button
-          className="bg-cyan-400 py-3 px-8 rounded-lg text-lg font-bold"
+          className="bg-cyan-400 py-3 px-8 rounded-lg text-lg font-bold transition-transform transform hover:scale-110 hover:bg-cyan-500"
           onClick={handleAddClick}
         >
           Add
         </button>
         <button
-          className="bg-red-500 py-3 px-8 rounded-lg text-lg font-bold"
+          className="bg-red-500 py-3 px-8 rounded-lg text-lg font-bold transition-transform transform hover:scale-110 hover:bg-red-600"
           onClick={() => {
             // Clear all the text fields
             setFullName("");
@@ -217,7 +318,7 @@ const EmployeeRegisterForm = () => {
             setAddress("");
             setQualifications("");
 
-            // Navigate away
+            // Navigate
             navigate("/");
           }}
         >

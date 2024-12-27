@@ -7,11 +7,22 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.8",
+<<<<<<< HEAD
     "react": "^18.2.0",
+=======
+    "emailjs-com": "^3.2.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2",
+    "react": "^18.2.0",
+    "react-autosuggest": "^10.1.0",
+    "react-calendar": "^4.8.0",
+    "react-datepicker": "^6.9.0",
+>>>>>>> 1a17f589f8fa4bbf1c35bd2a2ce9217316cfbc29
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
-    "sweetalert2": "^11.10.6",
+    "reactstrap": "^9.2.2",
+    "sweetalert2": "^11.10.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
